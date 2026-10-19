@@ -1,0 +1,6 @@
+money
+agriculture
+tech
+family
+inventor
+investor
