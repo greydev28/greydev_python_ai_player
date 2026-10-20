@@ -1,0 +1,10 @@
+#!/bin/sh
+'''exec' "/home/student/Downloads/greydev_python_ai_player-master/ai_engineer_playbook-main/Part 05 — 📁 Files & Python Ecosystem/my_project/venv_a/bin/python3" "$0" "$@"
+' '''
+# -*- coding: utf-8 -*-
+import re
+import sys
+from numpy.f2py.f2py2e import main
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(main())
