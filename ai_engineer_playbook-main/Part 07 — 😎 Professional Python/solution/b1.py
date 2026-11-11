@@ -64,13 +64,44 @@ except ValueError as err:
 # finally:
 #       print("i'm done!")
 
-def set_player_age(age):
-    if not isinstance(age,int):
+""" def set_player_age(age):
+    int_age = int(age)
+    if not int_age:
          raise ValueError("not a valid number")
     if age < 0:
-         print()
+         print("age can not be less 0.")
     return age
 try:
     print(set_player_age(20))
 except ValueError as err:
     print(err)
+
+ """
+
+def save_to_database(name,score):
+   profile = {
+        "name": name,
+        "score": score
+    }
+   return profile 
+
+def send_email(name):
+    return f"hello mr {name} you were selected"
+
+def checking_student():
+      name = input("Name: ")
+      age = int(input("Age: "))
+      score = 100 / age
+      print(f"{name}: {score}")
+      print(save_to_database(name, score))
+      print(send_email(name))
+    
+    
+try:
+   checking_student()
+except ValueError:
+    print("Something went wrong.")
+except ZeroDivisionError:
+    print("sorry age can not be 0")   
+finally:
+    print("thank!")
