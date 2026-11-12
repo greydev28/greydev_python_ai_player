@@ -77,7 +77,7 @@ except ValueError as err:
     print(err)
 
  """
-
+""" 
 def save_to_database(name,score):
    profile = {
         "name": name,
@@ -105,3 +105,116 @@ except ZeroDivisionError:
     print("sorry age can not be 0")   
 finally:
     print("thank!")
+ """
+""" import json
+
+class PlayerData(Exception):
+    pass
+
+def load_player_data():
+   try:
+      with open("data/file", "r")as file:
+         json.load(file)
+   except FileNotFoundError as error:
+       raise PlayerData("Player data cannot be found!") from error
+
+try:
+    load_player_data()
+except PlayerData as e:
+    print(e) """
+class RegistrationError(Exception):
+    pass
+
+
+
+def register_player(name,age,position):
+      # Validate name
+   if not name.strip():
+      raise RegistrationError("Name cannot be empty.")
+   if len(name) < 3:
+      raise RegistrationError("Sorry name cannot be empty")
+   # Validate age
+   try:
+      age = int(age)
+   except (ValueError, TypeError) as error:
+      raise RegistrationError("Age must be a valid number.") from error
+
+   if age < 16:
+      raise RegistrationError("Age cannot be less than 16.")
+
+   # Validate position
+   valid_positions = ("forward", "midfielder", "defender", "goalkeeper")
+
+   position = position.strip().lower()
+
+   if position not in valid_positions:
+      allowed = ", ".join(valid_positions)
+      raise RegistrationError(f"Invalid player position. Choose from: {allowed}.")
+   position = position.title()
+   # Successful registration
+   return {
+      "name": name,
+      "age": age,
+      "position": position
+   }
+
+
+
+try:
+    player = register_player("greydev","kj","Midfielde")
+except RegistrationError as err:
+    print(err)
+except TypeError as err:
+    print(err)
+else:
+    print(player)
+
+
+
+# try
+#  ↓
+# Attempt risky operation
+
+# except
+#  ↓
+# Handle expected failure
+
+# else
+#  ↓
+# Handle successful execution
+
+# finally
+#  ↓
+# Guarantee cleanup
+
+# raise
+#  ↓
+# Signal an invalid condition
+
+# custom exceptions
+#  ↓
+# Give domain-specific meaning
+
+# exception propagation
+#  ↓
+# Let errors travel to
+# the layer that can handle them
+
+# challenge 
+import json
+
+class FileData(Exception):
+    pass
+def file_backed():
+   try: 
+      with open("file","r") as file:
+         json.load(file)
+   except  FileNotFoundError as error:
+      raise FileData("file not found!") from error
+
+
+try:
+   file_backed()
+except FileData as err:
+   print(err)
+
